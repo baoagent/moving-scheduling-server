@@ -20,8 +20,7 @@ app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'sta
 app.config['SECRET_KEY'] = 'asdf#FGSgvasgf$5$WGT'
 
 # Enable CORS for all routes
-CORS(app)
-
+CORS(app, resources={r"/*": {"origins": "*"}})
 app.register_blueprint(user_bp, url_prefix='/api')
 app.register_blueprint(customer_bp, url_prefix='/api')
 app.register_blueprint(crew_member_bp, url_prefix='/api')
