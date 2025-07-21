@@ -15,6 +15,8 @@ from src.routes.customer import customer_bp
 from src.routes.crew_member import crew_member_bp
 from src.routes.crew import crew_bp
 from src.routes.appointment import appointment_bp
+from src.routes.health import health_bp
+from src.cli.database_commands import register_commands
 
 app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'static'))
 app.config['SECRET_KEY'] = 'asdf#FGSgvasgf$5$WGT'
@@ -26,6 +28,10 @@ app.register_blueprint(customer_bp, url_prefix='/api')
 app.register_blueprint(crew_member_bp, url_prefix='/api')
 app.register_blueprint(crew_bp, url_prefix='/api')
 app.register_blueprint(appointment_bp, url_prefix='/api')
+app.register_blueprint(health_bp, url_prefix='/api')
+
+# Register CLI commands
+register_commands(app)
 
 # uncomment if you need to use database
 app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(os.path.dirname(__file__), 'database', 'app.db')}"
